@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Sport"
+        android:id="@+id/item_sport"
+        android:icon="@drawable/ic_sports"/>
+
+    <item
+        android:title="Technology"
+        android:id="@+id/item_technology"
+        android:icon="@drawable/ic_technology"/>
+
+    <item
+        android:title="Science"
+        android:id="@+id/item_science"
+        android:icon="@drawable/ic_science"/>
+
+    <item
+        android:title="Business"
+        android:id="@+id/item_business"
+        android:icon="@drawable/ic_business"/>
+
+</menu>
