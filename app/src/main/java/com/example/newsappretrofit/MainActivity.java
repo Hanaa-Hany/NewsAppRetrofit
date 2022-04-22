@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -38,12 +39,13 @@ public class MainActivity extends AppCompatActivity {
         initViews();
         onClicksBottomNav();
 
+
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getApplicationContext(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         newsApi=retrofit.create(NewsApi.class);
 
-        newsApi.getQueryNews("eg","technology")
+        newsApi.getQueryNews("eg","sport")
                 .enqueue(new Callback<NewsResponse>() {
                     @Override
                     public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
@@ -65,25 +67,27 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+
+
     }
 
     private void onClicksBottomNav() {
-        bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onNavigationItemReselected(@NonNull MenuItem item) {
-                int id=item.getItemId();
-                if(id==R.id.item_sport){
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if (id == R.id.item_sport) {
                     changeFragment(new SportFragment());
-                    newsApi.getQueryNews("eg","sport")
+                    newsApi.getQueryNews("eg", "sport")
                             .enqueue(new Callback<NewsResponse>() {
                                 @Override
                                 public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
 
-                                    if(response.body()!=null && response.isSuccessful()){
-                                        Log.i(TAG, "onResponse: "+response.body().toString());
+                                    if (response.body() != null && response.isSuccessful()) {
+                                        Log.i(TAG, "onResponse: " + response.body().toString());
                                         //list
                                         NewsResponse list = response.body();
-                                        newsAdapter=new NewsAdapter(MainActivity.this,list.getArticles());
+                                        newsAdapter = new NewsAdapter(MainActivity.this, list.getArticles());
                                         recyclerView.setAdapter(newsAdapter);
                                     }
                                 }
@@ -91,22 +95,22 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onFailure(Call<NewsResponse> call, Throwable t) {
 
-                                    String errorMessage=t.getLocalizedMessage();
-                                    Log.i(TAG, "onFailure: "+errorMessage);
+                                    String errorMessage = t.getLocalizedMessage();
+                                    Log.i(TAG, "onFailure: " + errorMessage);
                                 }
                             });
-                }else if(id==R.id.item_technology){
+                } else if (id == R.id.item_technology) {
                     changeFragment(new TechnologyFragment());
-                    newsApi.getQueryNews("eg","technology")
+                    newsApi.getQueryNews("eg", "technology")
                             .enqueue(new Callback<NewsResponse>() {
                                 @Override
                                 public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
 
-                                    if(response.body()!=null && response.isSuccessful()){
-                                        Log.i(TAG, "onResponse: "+response.body().toString());
+                                    if (response.body() != null && response.isSuccessful()) {
+                                        Log.i(TAG, "onResponse: " + response.body().toString());
                                         //list
                                         NewsResponse list = response.body();
-                                        newsAdapter=new NewsAdapter(MainActivity.this,list.getArticles());
+                                        newsAdapter = new NewsAdapter(MainActivity.this, list.getArticles());
                                         recyclerView.setAdapter(newsAdapter);
                                     }
                                 }
@@ -114,22 +118,22 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onFailure(Call<NewsResponse> call, Throwable t) {
 
-                                    String errorMessage=t.getLocalizedMessage();
-                                    Log.i(TAG, "onFailure: "+errorMessage);
+                                    String errorMessage = t.getLocalizedMessage();
+                                    Log.i(TAG, "onFailure: " + errorMessage);
                                 }
                             });
-                }else if(id==R.id.item_business){
+                } else if (id == R.id.item_business) {
                     changeFragment(new BussinessFragment());
-                    newsApi.getQueryNews("eg","business")
+                    newsApi.getQueryNews("eg", "business")
                             .enqueue(new Callback<NewsResponse>() {
                                 @Override
                                 public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
 
-                                    if(response.body()!=null && response.isSuccessful()){
-                                        Log.i(TAG, "onResponse: "+response.body().toString());
+                                    if (response.body() != null && response.isSuccessful()) {
+                                        Log.i(TAG, "onResponse: " + response.body().toString());
                                         //list
                                         NewsResponse list = response.body();
-                                        newsAdapter=new NewsAdapter(MainActivity.this,list.getArticles());
+                                        newsAdapter = new NewsAdapter(MainActivity.this, list.getArticles());
                                         recyclerView.setAdapter(newsAdapter);
                                     }
                                 }
@@ -137,22 +141,22 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onFailure(Call<NewsResponse> call, Throwable t) {
 
-                                    String errorMessage=t.getLocalizedMessage();
-                                    Log.i(TAG, "onFailure: "+errorMessage);
+                                    String errorMessage = t.getLocalizedMessage();
+                                    Log.i(TAG, "onFailure: " + errorMessage);
                                 }
                             });
-                }else {
+                } else {
                     changeFragment(new ScienceFragment());
-                    newsApi.getQueryNews("eg","science")
+                    newsApi.getQueryNews("eg", "science")
                             .enqueue(new Callback<NewsResponse>() {
                                 @Override
                                 public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
 
-                                    if(response.body()!=null && response.isSuccessful()){
-                                        Log.i(TAG, "onResponse: "+response.body().toString());
+                                    if (response.body() != null && response.isSuccessful()) {
+                                        Log.i(TAG, "onResponse: " + response.body().toString());
                                         //list
                                         NewsResponse list = response.body();
-                                        newsAdapter=new NewsAdapter(MainActivity.this,list.getArticles());
+                                        newsAdapter = new NewsAdapter(MainActivity.this, list.getArticles());
                                         recyclerView.setAdapter(newsAdapter);
                                     }
                                 }
@@ -160,14 +164,19 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onFailure(Call<NewsResponse> call, Throwable t) {
 
-                                    String errorMessage=t.getLocalizedMessage();
-                                    Log.i(TAG, "onFailure: "+errorMessage);
+                                    String errorMessage = t.getLocalizedMessage();
+                                    Log.i(TAG, "onFailure: " + errorMessage);
+
                                 }
                             });
                 }
+                return true;
             }
+
         });
-    }
+
+}
+
 
     private void initViews() {
         recyclerView=findViewById(R.id.recycler);
@@ -184,5 +193,6 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.continer,fragment)
                 .commit();
     }
+
 
 }

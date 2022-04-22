@@ -31,13 +31,13 @@
             android:textStyle="bold"
             android:textSize="@dimen/_20ssp"/>
 
-        <TextView
+      <!-- <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tv_description"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            />
+            />-->
     </LinearLayout>
 
 
