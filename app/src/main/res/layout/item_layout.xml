@@ -31,6 +31,16 @@
             android:textStyle="bold"
             android:textSize="@dimen/_20ssp"/>
 
+        <ImageView
+            android:id="@+id/img_share_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_share"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"/>
+
       <!-- <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

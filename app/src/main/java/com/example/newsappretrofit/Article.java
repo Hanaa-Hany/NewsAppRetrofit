@@ -3,36 +3,71 @@ package com.example.newsappretrofit;
 
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.squareup.picasso.Picasso;
+
+@Entity(tableName = "Article DB")
 
 public class Article {
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    @TypeConverters(Convertors.class)
+    @NonNull
     @SerializedName("source")
     @Expose
+
+    @ColumnInfo(name = "source")
     private Source source;
     @SerializedName("author")
     @Expose
+    @ColumnInfo(name = "Author")
+
     private String author;
     @SerializedName("title")
     @Expose
+    @ColumnInfo(name = "Title")
+
     private String title;
+
     @SerializedName("description")
     @Expose
+    @ColumnInfo(name = "Description")
+
     private String description;
+
     @SerializedName("url")
     @Expose
+    @ColumnInfo(name = "URL")
+
     private String url;
+
     @SerializedName("urlToImage")
     @Expose
+    @ColumnInfo(name = "URL to Image")
+
     private String urlToImage;
+
     @SerializedName("publishedAt")
     @Expose
+    @ColumnInfo(name = "Published At")
+
     private String publishedAt;
+
     @SerializedName("content")
     @Expose
+    @ColumnInfo(name = "Content")
+
     private String content;
+
+
 
     public Source getSource() {
         return source;
@@ -95,6 +130,25 @@ public class Article {
     }
 
     public void setContent(String content) {
+        this.content = content;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Article(@NonNull Source source, String author, String title, String description, String url, String urlToImage, String publishedAt, String content) {
+        this.source = source;
+        this.author = author;
+        this.title = title;
+        this.description = description;
+        this.url = url;
+        this.urlToImage = urlToImage;
+        this.publishedAt = publishedAt;
         this.content = content;
     }
 
